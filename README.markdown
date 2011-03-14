@@ -48,7 +48,8 @@ Add the following to your ~/.profile:
 export PATH=$PATH:/Library/PostgreSQL/9.0/bin
 
 Reload your ~/.profile:
-  $ source ~/.profile
+
+>$ source ~/.profile
 
 Create a new rails app using postgres
 
