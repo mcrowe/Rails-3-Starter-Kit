@@ -95,63 +95,63 @@ Replace config/database.yml with:
 >    password: [password]
 
 Create your databases.
-> rake db:create:all
+>$ rake db:create:all
 
 Optional: Install navicat for administering postgres
 
-Download navicat lite for administering postgres: 
-	http://www.navicat.com/en/download/download.html
+Download [navicat lite](http://www.navicat.com/en/download/download.html) for administering postgres. 
 
 Pimp Your Console
+-----------------
 
 Add awesome printing (colors and formatting of console output)
 
 Add to Gemfile in each rails app:
-group :development, :test do
-  gem 'awesome_print'
-end
+  group :development, :test do
+    gem 'awesome_print'
+  end
 
 Try it in rails console:
-> ap { :a => 1, :b => 2 }
+>$ ap { :a => 1, :b => 2 }
 
 Nice console prompt, logging to console, console indenting
 
 Setup your ~.irbrc to look like:
 
-%w{rubygems}.each do |lib| 
-  begin 
-    require lib 
-  rescue LoadError => err
-    $stderr.puts "Couldn't load #{lib}: #{err}"
+  %w{rubygems}.each do |lib| 
+    begin 
+      require lib 
+    rescue LoadError => err
+      $stderr.puts "Couldn't load #{lib}: #{err}"
+    end
   end
-end
 
-# Prompt behavior
-IRB.conf[:AUTO_INDENT] = true
+  # Prompt behavior
+  IRB.conf[:AUTO_INDENT] = true
 
-# Loaded when we fire up the Rails console
-# => Set a special rails prompt.
-# => Redirect logging to STDOUT.   
-if defined?(Rails.env)
-  rails_env = Rails.env
-  rails_root = File.basename(Dir.pwd)
-  prompt = "#{rails_root}[#{rails_env.sub('production', 'prod').sub('development', 'dev')}]"
-  IRB.conf[:PROMPT] ||= {}
-  IRB.conf[:PROMPT][:RAILS] = {
-    :PROMPT_I => "#{prompt}>> ",
-    :PROMPT_S => "#{prompt}* ",
-    :PROMPT_C => "#{prompt}? ",
-    :RETURN   => "=> %s\n" 
-  }
-  IRB.conf[:PROMPT_MODE] = :RAILS
-  # Redirect log to STDOUT, which means the console itself
-  IRB.conf[:IRB_RC] = Proc.new do
-    logger = Logger.new(STDOUT)
-    ActiveRecord::Base.logger = logger
-    ActiveResource::Base.logger = logger
-    ActiveRecord::Base.instance_eval { alias :[] :find }
+  # Loaded when we fire up the Rails console
+  # => Set a special rails prompt.
+  # => Redirect logging to STDOUT.   
+  if defined?(Rails.env)
+    rails_env = Rails.env
+    rails_root = File.basename(Dir.pwd)
+    prompt = "#{rails_root}[#{rails_env.sub('production', 'prod').sub('development', 'dev')}]"
+    IRB.conf[:PROMPT] ||= {}
+    IRB.conf[:PROMPT][:RAILS] = {
+      :PROMPT_I => "#{prompt}>> ",
+      :PROMPT_S => "#{prompt}* ",
+      :PROMPT_C => "#{prompt}? ",
+      :RETURN   => "=> %s\n" 
+    }
+    IRB.conf[:PROMPT_MODE] = :RAILS
+    # Redirect log to STDOUT, which means the console itself
+    IRB.conf[:IRB_RC] = Proc.new do
+      logger = Logger.new(STDOUT)
+      ActiveRecord::Base.logger = logger
+      ActiveResource::Base.logger = logger
+      ActiveRecord::Base.instance_eval { alias :[] :find }
+    end
   end
-end
 
 
 Setup Fast, Continuous RSpec Testing
