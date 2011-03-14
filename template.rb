@@ -61,39 +61,41 @@ generate 'rspec:install'
 #--------------------------
 # Note: pg gem causes trouble with rspec install
 # so it has to be loaded after.
-# Create a database.yml for postgres
-postgres_pass = ask("\r\nEnter your postgres password:")
-remove_file "config/database.yml"
-create_file "config/database.yml", <<-DATABASE
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: #{app_name}_development
-  pool: 5
-  username: postgres
-  password: #{postgres_pass}
+if yes?("\r\nInstall with postgres?")
+  # Create a database.yml for postgres
+  postgres_pass = ask("\r\nEnter your postgres password:")
+  remove_file "config/database.yml"
+  create_file "config/database.yml", <<-DATABASE
+  development:
+    adapter: postgresql
+    encoding: unicode
+    database: #{app_name}_development
+    pool: 5
+    username: postgres
+    password: #{postgres_pass}
 
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: #{app_name}_test
-  pool: 5
-  username: postgres
-  password: #{postgres_pass}
+  test:
+    adapter: postgresql
+    encoding: unicode
+    database: #{app_name}_test
+    pool: 5
+    username: postgres
+    password: #{postgres_pass}
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: #{app_name}_production
-  pool: 5
-  username: postgres
-  password: #{postgres_pass}
-DATABASE
-# Create databases
-rake "db:create:all"
-# Install pg gem.
-gem 'pg'
-run 'bundle install'
+  production:
+    adapter: postgresql
+    encoding: unicode
+    database: #{app_name}_production
+    pool: 5
+    username: postgres
+    password: #{postgres_pass}
+  DATABASE
+  # Create databases
+  rake "db:create:all"
+  # Install pg gem.
+  gem 'pg'
+  run 'bundle install'
+end
 
 #--------------------------
 # CLEANUP
