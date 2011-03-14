@@ -48,17 +48,17 @@ Add the following to your ~/.profile:
 export PATH=$PATH:/Library/PostgreSQL/9.0/bin
 
 Reload your ~/.profile:
-> source ~/.profile
+  $ source ~/.profile
 
 Create a new rails app using postgres
 
 Create a new app with a database.yml setup for postgres, and the pg gem added in Gemfile:
-`> rails new pgtest -d postgresql `
+  $ rails new pgtest -d postgresql
 
 Edit your database.yml: Set the proper username and password for each db, and remove all the annoying comments. 
 
 Create your databases.
-> rake db:create:all
+  $ rake db:create:all
 
 Add postgres to an existing rails app
 
@@ -66,29 +66,29 @@ Add pg gem to Gemfile
 	gem ‘pg’
 
 Replace config/database.yml with:
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: [appname]_development
-  pool: 5
-  username: postgres
-  password: [password]
+  development:
+    adapter: postgresql
+    encoding: unicode
+    database: [appname]_development
+    pool: 5
+    username: postgres
+    password: [password]
 
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: [appname]_test
-  pool: 5
-  username: postgres
-  password: [password]
+  test:
+    adapter: postgresql
+    encoding: unicode
+    database: [appname]_test
+    pool: 5
+    username: postgres
+    password: [password]
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: [appname]_production
-  pool: 5
-  username: postgres
-  password: [password]
+  production:
+    adapter: postgresql
+    encoding: unicode
+    database: [appname]_production
+    pool: 5
+    username: postgres
+    password: [password]
 
 Create your databases.
 > rake db:create:all
