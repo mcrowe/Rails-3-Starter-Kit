@@ -66,6 +66,7 @@ Add pg gem to Gemfile
 	gem ‘pg’
 
 Replace config/database.yml with:
+  
   development:
     adapter: postgresql
     encoding: unicode
