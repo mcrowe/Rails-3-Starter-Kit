@@ -1,15 +1,15 @@
-Setup the perfect Ruby on Rails App 
-===================================
+# Setup the perfect Ruby on Rails App 
 
-Assumptions
------------
+
+## Assumptions
+
 
 Mac OSX 10.6, XCode / Developer Kit, Git, Growl, Textmate already installed.
 
-Basic Install
--------------
+## Basic Install
 
-Install rvm:
+
+### Install rvm:
 
 >$ mkdir -p ~/.rvm/src/ && cd ~/.rvm/src && rm -rf ./rvm/ && git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
 
@@ -19,11 +19,13 @@ Add the following to your ~/.profile:
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 Load your .profile:
+
 >$ source ~/.profile
 >$ rvm -v
 >$ rvm list
 
-Install ruby 1.8.7:
+### Install ruby 1.8.7:
+
 >$ rvm install 1.8.7
 >$ rvm 1.8.7 --default
 >$ ruby -v
@@ -36,16 +38,17 @@ Make gem install not compile rdoc or ri, add the following to ~/.gemrc:
   
     gem: --no-ri --no-rdoc
 
-Install rails:
+### Install rails:
+
 >$ gem install rails
 >$ rails -v
 
-Postgres Setup
---------------
+## Postgres Setup
 
-Install Postgres:
 
-Get the one click installer at: http://www.postgresql.org/download/macosx   (> v 9.0.3), and run the app inside the dmg. (Note: I had to restart my system and re-run the installer). Use the default settings, set the password to postgres. Don't run stack builder at the end.
+### Install Postgres:
+
+Get the [one click installer](http://www.postgresql.org/download/macosx) (> v 9.0.3), and run the app inside the dmg. (Note: I had to restart my system and re-run the installer). Use the default settings, set the password to postgres. Don't run stack builder at the end.
 
 Add the following to your ~/.profile:
 
@@ -56,7 +59,7 @@ Reload your ~/.profile:
 
 >$ source ~/.profile
 
-Create a new rails app using postgres
+### Create a new rails app using postgres
 
 Create a new app with a database.yml setup for postgres, and the pg gem added in Gemfile:
 
@@ -68,7 +71,7 @@ Create your databases.
 
 >$ rake db:create:all
 
-Add postgres to an existing rails app
+### Add postgres to an existing rails app
 
 Add pg gem to Gemfile
 
@@ -101,14 +104,15 @@ Replace config/database.yml with:
       password: [password]
 
 Create your databases.
+
 >$ rake db:create:all
 
-Optional: Install navicat for administering postgres
+### Optional: Install navicat for administering postgres
 
 Download [navicat lite](http://www.navicat.com/en/download/download.html) for administering postgres. 
 
-Pimp Your Console
------------------
+## Pimp Your Console
+
 
 Add awesome printing (colors and formatting of console output)
 
@@ -161,8 +165,7 @@ Setup your ~.irbrc to look like:
     end
 
 
-Setup Fast, Continuous RSpec Testing
-------------------------------------
+## Setup Fast, Continuous RSpec Testing
 
 Create a new app with rspec
 
