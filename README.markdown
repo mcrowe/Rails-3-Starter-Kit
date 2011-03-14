@@ -9,32 +9,32 @@ Basic Install
 
 Install rvm:
 
-> mkdir -p ~/.rvm/src/ && cd ~/.rvm/src && rm -rf ./rvm/ && git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
+>$ mkdir -p ~/.rvm/src/ && cd ~/.rvm/src && rm -rf ./rvm/ && git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
 
 Add the following to your ~/.profile:
-# Load RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+  # Load RVM
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 Load your .profile:
-> source ~/.profile
-> rvm -v
-> rvm list
+>$ source ~/.profile
+>$ rvm -v
+>$ rvm list
 
 Install ruby 1.8.7:
-> rvm install 1.8.7
-> rvm 1.8.7 --default
-> ruby -v
-> rvm list
-> rvm gemdir
-> gem -v
-> gem list
+>$ rvm install 1.8.7
+>$ rvm 1.8.7 --default
+>$ ruby -v
+>$ rvm list
+>$ rvm gemdir
+>$ gem -v
+>$ gem list
 
 Make gem install not compile rdoc or ri, add the following to ~/.gemrc:
-gem: --no-ri --no-rdoc
+  gem: --no-ri --no-rdoc
 
 Install rails:
-> gem install rails
-> rails -v
+>$ gem install rails
+>$ rails -v
 
 Postgres Setup
 --------------
