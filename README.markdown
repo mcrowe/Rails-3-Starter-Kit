@@ -1,8 +1,10 @@
-Ruby on Rails Setup
+Setup the perfect Ruby on Rails App 
+===================================
 
 Assumptions
 -----------
-XCode / Developer Kit, Git, Textmate already installed.
+
+Mac OSX 10.6, XCode / Developer Kit, Git, Growl, Textmate already installed.
 
 Basic Install
 -------------
