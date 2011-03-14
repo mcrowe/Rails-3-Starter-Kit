@@ -1,9 +1,11 @@
 Ruby on Rails Setup
 
-Assumptions:
+Assumptions
+-----------
 XCode / Developer Kit, Git, Textmate already installed.
 
-Basic Install:
+Basic Install
+-------------
 
 Install rvm:
 
@@ -34,7 +36,8 @@ Install rails:
 > gem install rails
 > rails -v
 
-Postgres Setup:
+Postgres Setup
+--------------
 
 Install Postgres:
 
@@ -50,7 +53,7 @@ Reload your ~/.profile:
 Create a new rails app using postgres
 
 Create a new app with a database.yml setup for postgres, and the pg gem added in Gemfile:
-> rails new pgtest -d postgresql 
+`> rails new pgtest -d postgresql `
 
 Edit your database.yml: Set the proper username and password for each db, and remove all the annoying comments. 
 
