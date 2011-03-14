@@ -1,13 +1,10 @@
 # Setup the perfect Ruby on Rails App 
 
-
 ## Assumptions
-
 
 Mac OSX 10.6, XCode / Developer Kit, Git, Growl, Textmate already installed.
 
 ## Basic Install
-
 
 ### Install rvm:
 
