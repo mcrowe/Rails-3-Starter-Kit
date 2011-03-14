@@ -66,7 +66,7 @@ Add pg gem to Gemfile
 	gem ‘pg’
 
 Replace config/database.yml with:
-  development:
+  `development:
     adapter: postgresql
     encoding: unicode
     database: [appname]_development
@@ -88,7 +88,7 @@ Replace config/database.yml with:
     database: [appname]_production
     pool: 5
     username: postgres
-    password: [password]
+    password: [password]`
 
 Create your databases.
 > rake db:create:all
