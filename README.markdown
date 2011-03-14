@@ -12,8 +12,9 @@ Install rvm:
 >$ mkdir -p ~/.rvm/src/ && cd ~/.rvm/src && rm -rf ./rvm/ && git clone git://github.com/wayneeseguin/rvm.git && cd rvm && ./install
 
 Add the following to your ~/.profile:
-  # Load RVM
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+    # Load RVM
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 Load your .profile:
 >$ source ~/.profile
@@ -30,7 +31,8 @@ Install ruby 1.8.7:
 >$ gem list
 
 Make gem install not compile rdoc or ri, add the following to ~/.gemrc:
-  gem: --no-ri --no-rdoc
+  
+    gem: --no-ri --no-rdoc
 
 Install rails:
 >$ gem install rails
@@ -44,8 +46,9 @@ Install Postgres:
 Get the one click installer at: http://www.postgresql.org/download/macosx   (> v 9.0.3), and run the app inside the dmg. (Note: I had to restart my system and re-run the installer). Use the default settings, set the password to postgres. Don't run stack builder at the end.
 
 Add the following to your ~/.profile:
-# Add Postgres binaries to the path
-export PATH=$PATH:/Library/PostgreSQL/9.0/bin
+
+    # Add Postgres binaries to the path
+    export PATH=$PATH:/Library/PostgreSQL/9.0/bin
 
 Reload your ~/.profile:
 
@@ -60,39 +63,40 @@ Create a new app with a database.yml setup for postgres, and the pg gem added in
 Edit your database.yml: Set the proper username and password for each db, and remove all the annoying comments. 
 
 Create your databases.
+
 >$ rake db:create:all
 
 Add postgres to an existing rails app
 
 Add pg gem to Gemfile
 
-> gem ‘pg’
+    gem ‘pg’
 
 Replace config/database.yml with:
   
->  development:
->    adapter: postgresql
->    encoding: unicode
->    database: [appname]_development
->    pool: 5
->    username: postgres
->    password: [password]
->
->  test:
->    adapter: postgresql
->    encoding: unicode
->    database: [appname]_test
->    pool: 5
->    username: postgres
->    password: [password]
->
->  production:
->    adapter: postgresql
->    encoding: unicode
->    database: [appname]_production
->    pool: 5
->    username: postgres
->    password: [password]
+    development:
+      adapter: postgresql
+      encoding: unicode
+      database: [appname]_development
+      pool: 5
+      username: postgres
+      password: [password]
+
+    test:
+      adapter: postgresql
+      encoding: unicode
+      database: [appname]_test
+      pool: 5
+      username: postgres
+      password: [password]
+
+    production:
+      adapter: postgresql
+      encoding: unicode
+      database: [appname]_production
+      pool: 5
+      username: postgres
+      password: [password]
 
 Create your databases.
 >$ rake db:create:all
@@ -107,9 +111,10 @@ Pimp Your Console
 Add awesome printing (colors and formatting of console output)
 
 Add to Gemfile in each rails app:
-  group :development, :test do
-    gem 'awesome_print'
-  end
+
+    group :development, :test do
+      gem 'awesome_print'
+    end
 
 Try it in rails console:
 >$ ap { :a => 1, :b => 2 }
@@ -118,43 +123,44 @@ Nice console prompt, logging to console, console indenting
 
 Setup your ~.irbrc to look like:
 
-  %w{rubygems}.each do |lib| 
-    begin 
-      require lib 
-    rescue LoadError => err
-      $stderr.puts "Couldn't load #{lib}: #{err}"
+    %w{rubygems}.each do |lib| 
+      begin 
+        require lib 
+      rescue LoadError => err
+        $stderr.puts "Couldn't load #{lib}: #{err}"
+      end
     end
-  end
 
-  # Prompt behavior
-  IRB.conf[:AUTO_INDENT] = true
+    # Prompt behavior
+    IRB.conf[:AUTO_INDENT] = true
 
-  # Loaded when we fire up the Rails console
-  # => Set a special rails prompt.
-  # => Redirect logging to STDOUT.   
-  if defined?(Rails.env)
-    rails_env = Rails.env
-    rails_root = File.basename(Dir.pwd)
-    prompt = "#{rails_root}[#{rails_env.sub('production', 'prod').sub('development', 'dev')}]"
-    IRB.conf[:PROMPT] ||= {}
-    IRB.conf[:PROMPT][:RAILS] = {
-      :PROMPT_I => "#{prompt}>> ",
-      :PROMPT_S => "#{prompt}* ",
-      :PROMPT_C => "#{prompt}? ",
-      :RETURN   => "=> %s\n" 
-    }
-    IRB.conf[:PROMPT_MODE] = :RAILS
-    # Redirect log to STDOUT, which means the console itself
-    IRB.conf[:IRB_RC] = Proc.new do
-      logger = Logger.new(STDOUT)
-      ActiveRecord::Base.logger = logger
-      ActiveResource::Base.logger = logger
-      ActiveRecord::Base.instance_eval { alias :[] :find }
+    # Loaded when we fire up the Rails console
+    # => Set a special rails prompt.
+    # => Redirect logging to STDOUT.   
+    if defined?(Rails.env)
+      rails_env = Rails.env
+      rails_root = File.basename(Dir.pwd)
+      prompt = "#{rails_root}[#{rails_env.sub('production', 'prod').sub('development', 'dev')}]"
+      IRB.conf[:PROMPT] ||= {}
+      IRB.conf[:PROMPT][:RAILS] = {
+        :PROMPT_I => "#{prompt}>> ",
+        :PROMPT_S => "#{prompt}* ",
+        :PROMPT_C => "#{prompt}? ",
+        :RETURN   => "=> %s\n" 
+      }
+      IRB.conf[:PROMPT_MODE] = :RAILS
+      # Redirect log to STDOUT, which means the console itself
+      IRB.conf[:IRB_RC] = Proc.new do
+        logger = Logger.new(STDOUT)
+        ActiveRecord::Base.logger = logger
+        ActiveResource::Base.logger = logger
+        ActiveRecord::Base.instance_eval { alias :[] :find }
+      end
     end
-  end
 
 
 Setup Fast, Continuous RSpec Testing
+------------------------------------
 
 Create a new app with rspec
 
